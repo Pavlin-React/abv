@@ -1,9 +1,10 @@
 import React from 'react';
 import {View, Text, SafeAreaView, TouchableOpacity} from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import Gaming from './assets/gaming.svg';
+import Gaming from './src/assets/gaming.svg';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import HomeScreen from './src/screens/HomeScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -12,7 +13,7 @@ let App = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name='Main' component={Main} options={{headerShown: false}}  />
-        <Stack.Screen name='Home' component={Home} />
+        <Stack.Screen name='Home' component={HomeScreen} options={{headerShown: false}}/>
       </Stack.Navigator>
     </NavigationContainer>
   )
@@ -59,18 +60,5 @@ const Main = ({navigation}) => {
     </SafeAreaView>
   );
 };
-
-let Home = ({navigation}) => {
-  return(
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}} >
-      <Text>This is Home Screen</Text>
-      <TouchableOpacity onPress={() => navigation.goBack()} >
-        <View>
-        <Text>Go to main Screen</Text>
-        </View>
-      </TouchableOpacity>
-    </View>
-  )
-}
 
 export default App;
