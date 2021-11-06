@@ -10,13 +10,13 @@ import {
 } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import Feather from 'react-native-vector-icons/Feather';
-import CustomSwitch from '../components/CustomSwitch';
 
 import BannerSlider from '../components/BannerSlider';
 import {windowWidth} from '../utils/Dimensions';
-import ListItem from '../components/ListItem';
 
-import {freeGames, sliderData} from '../model/data';
+import {freeGames, paidGames, sliderData} from '../model/data';
+import CustomSwitch from '../components/CustomSwitch';
+import ListItem from '../components/ListItem';
 
 export default function HomeScreen({navigation}) {
   const [gamesTab, setGamesTab] = useState(1);
@@ -38,13 +38,15 @@ export default function HomeScreen({navigation}) {
             justifyContent: 'space-between',
             marginBottom: 20,
           }}>
-          <Text style={{fontSize: 18}}>Hello John Doe</Text>
-          <TouchableOpacity onPress={() => navigation.goBack()}>
-            <ImageBackground
-              source={require('../assets/images/user-profile.jpg')}
-              style={{width: 35, height: 35}}
-              imageStyle={{borderRadius: 25}}
-            />
+          <Text style={{fontSize: 18}}>
+            Hello John Doe
+          </Text>
+          <TouchableOpacity onPress={()=>navigation.goBack()}>
+          <ImageBackground
+            source={require('../assets/images/user-profile.jpg')}
+            style={{width: 35, height: 35}}
+            imageStyle={{borderRadius: 25}}
+          />
           </TouchableOpacity>
         </View>
 
@@ -72,7 +74,9 @@ export default function HomeScreen({navigation}) {
             flexDirection: 'row',
             justifyContent: 'space-between',
           }}>
-          <Text style={{fontSize: 18}}>Upcoming Games</Text>
+          <Text style={{fontSize: 18}}>
+            Upcoming Games
+          </Text>
           <TouchableOpacity onPress={() => {}}>
             <Text style={{color: '#0aada8'}}>See all</Text>
           </TouchableOpacity>
@@ -86,22 +90,17 @@ export default function HomeScreen({navigation}) {
           renderItem={renderBanner}
           sliderWidth={windowWidth - 40}
           itemWidth={300}
-          loop={true}
+          loop
         />
-        <View style={{marginVertical: 20}} >
+
+        <View style={{marginVertical: 20}}>
           <CustomSwitch
             selectionMode={1}
-            option1="Free To Play"
-            option2="Paid Games"
+            option1="Free to play"
+            option2="Paid games"
             onSelectSwitch={onSelectSwitch}
           />
         </View>
-        {gamesTab == 1 &&
-          freeGames.map(item => (
-            <ListItem key={item.id} /> 
-          ))
-        }
-        {gamesTab == 2 && <Text>Paid Games</Text>}
       </ScrollView>
     </SafeAreaView>
   );

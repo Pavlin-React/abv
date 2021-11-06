@@ -1,64 +1,20 @@
 import React from 'react';
 import {View, Text, SafeAreaView, TouchableOpacity} from 'react-native';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import Gaming from './src/assets/gaming.svg';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './src/screens/HomeScreen';
-
-const Stack = createNativeStackNavigator();
+import AuthStack from './src/navigation/AuthStack'
+import AppStack from './src/navigation/AppStack'
 
 let App = () => {
   return(
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name='Main' component={Main} options={{headerShown: false}}  />
-        <Stack.Screen name='Home' component={HomeScreen} options={{headerShown: false}}/>
-      </Stack.Navigator>
+      <AppStack/>
+      {/* <AuthStack/> */}
     </NavigationContainer>
   )
 }
 
 
-const Main = ({navigation}) => {
-  return (
-    <SafeAreaView
-      style={{
-        backgroundColor: 'white',
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}>
-      <View style={{marginTop: 30}} >
-        <Text style={{fontSize: 30, fontWeight: 'bold', color: '#20315f'}}>
-          GAMEON
-        </Text>
-      </View>
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Gaming
-          width={300}
-          height={300}
-          style={{transform: [{rotate: '-15deg'}]}}
-        />
-      </View>
-      <TouchableOpacity
-        onPress={() => navigation.navigate('Home')}
-        style={{
-          backgroundColor: '#ad40af',
-          padding: 20,
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          width: '90%',
-          borderRadius: 5,
-          marginBottom: 50
-        }}>
-        <Text style={{color: 'white', fontSize: 22, fontWeight: 'bold'}}>
-          Let's Begin
-        </Text>
-        <MaterialIcons name="arrow-forward-ios" size={22} color="white" />
-      </TouchableOpacity>
-    </SafeAreaView>
-  );
-};
+
 
 export default App;

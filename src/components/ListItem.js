@@ -3,7 +3,7 @@ import {View, Image, Text, TouchableOpacity} from 'react-native';
 import { freeGames } from '../model/data';
 import { paidGames } from '../model/data';
 
-const ListItem = () => {
+const ListItem = ({photo, title, subtitle, price, isFree}) => {
   return (
     <View
       style={{
@@ -14,14 +14,14 @@ const ListItem = () => {
       }}>
       <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
         <Image
-          source={require('../assets/images/spiderman.webp')}
+          source={photo}
           style={{width: 55, height: 55, borderRadius: 10, marginRight: 8}}
         />
         <View>
-          <Text style={{fontSize: 14, color: '#333'}}>Marvel</Text>
+          <Text style={{fontSize: 14, color: '#333'}}>{subtitle}</Text>
           <Text
             style={{fontSize: 14, color: '#333', textTransform: 'uppercase'}}>
-            Spider-Man
+            {title}
           </Text>
         </View>
       </View>
@@ -33,7 +33,8 @@ const ListItem = () => {
           borderRadius: 10,
         }}>
         <Text style={{textAlign: 'center', color: 'white', fontSize: 14}}>
-          Play
+          {isFree == 'Yes' && 'Play'}
+          {isFree == 'No' && {price}}
         </Text>
       </TouchableOpacity>
     </View>
